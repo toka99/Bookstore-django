@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+
+<body>
+
+    <h2>List Books</h2>
+
+    {% if request.user.is_authenticated %}
+
+    <h3>welcome {{request.user}}</h3>
+
+    {%endif%} {% for book in books %}
+
+
+    <h5>{{book.title}}</h5>
+    <p>{{book.content}}</p>
+    <p>{{book.isbn}}</p>
+    <a href="{% url 'delete' book.id %}">Delete</a>
+    <a href="{% url 'edit' book.id %}">Edit</a>
+    <a href="{% url 'show' book.id %}">Show</a>
+    <br> {% endfor %}
+
+    <br>
+    <a href="{% url 'create'%}">Create Book</a>
+
+</body>
+
+</html>
